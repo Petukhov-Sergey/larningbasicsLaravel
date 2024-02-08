@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_published')->default(1);
 //            $table->unsignedBigInteger('author_id')->nullable();
 //            $table->foreign('author_id')->references('id')->on('users');
-        });
+        });fg
     }
 
     /**
