@@ -18,9 +18,15 @@ return new class extends Migration
             $table->text('body');
             $table->unsignedBigInteger('likes')->nullable();
             $table->boolean('is_published')->default(1);
-//            $table->unsignedBigInteger('author_id')->nullable();
-//            $table->foreign('author_id')->references('id')->on('users');
-        });fg
+
+            $table->softDeletes();
+
+            $table->unsignedBigInteger('category_id');
+
+            $table->index('category_id', 'post_category_idx');
+
+            $table->foreign('category_id', 'post_category_fk')->references('id')->on('categories');
+        });
     }
 
     /**
