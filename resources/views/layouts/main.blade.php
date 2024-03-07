@@ -15,10 +15,12 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="{{route('main.index')}}">Home <span class="sr-only"></span></a>
                     <a class="nav-item nav-link" href="{{route('post.index')}}">Posts</a>
                     <a class="nav-item nav-link" href="{{route('contact.index')}}">Contacts</a>
                     <a class="nav-item nav-link" href="{{route('about.index')}}">About</a>
+                    @can('view', auth()->user())
+                        <a class="nav-item nav-link" href="{{route('admin.post.index')}}">Admin</a>
+                    @endcan
                 </div>
             </div>
         </nav>

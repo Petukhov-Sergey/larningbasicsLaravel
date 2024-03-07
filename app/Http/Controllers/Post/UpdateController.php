@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Post;
 
-class ShowController extends Controller
+class UpdateController extends BaseController
 {
-    public function __invoke(Post $post)
+    public function __invoke(UpdateRequest $request, Post $post)
     {
-        return view('post.show', compact('post'));
+        $data = $request->validated();
+
+        $this->service->update($post, $data);
+
+        return redirect()->route('post.show', $post->id);
     }
 }

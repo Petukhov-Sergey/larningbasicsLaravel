@@ -13,20 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['namespace' => 'App\Http\Controllers\Post'], function () {
+    Route::get('/posts', 'IndexController')->name('post.index');
+    Route::get('/posts/create', 'CreateController')->name('post.create');
+    Route::get('/posts/{post}', 'ShowController')->name('post.show');
+    Route::get('/posts/{post}/edit', 'EditController')->name('post.edit');
+    Route::patch('/posts/{post}', 'UpdateController')->name('post.update');
+    Route::delete('/posts/{post}', 'DestroyController')->name('post.destroy');
+    Route::post('/posts', 'StoreController')->name('post.store');
 });
-Route::get('/posts', 'App\Http\Controllers\PostController@index')->name('post.index');
-Route::get('/posts/create', 'App\Http\Controllers\PostController@create')->name('post.create');
-Route::get('/posts/{post}', 'App\Http\Controllers\PostController@show')->name('post.show');
-Route::get('/posts/{post}/edit', 'App\Http\Controllers\PostController@edit')->name('post.edit');
 
-Route::patch('/posts/{post}', 'App\Http\Controllers\PostController@update')->name('post.update');
-Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@destroy')->name('post.destroy');
-
-
-Route::post('/posts', 'App\Http\Controllers\PostController@store')->name('post.store');
-
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::group(['namespace' => 'post'], function () {
+        Route::get('/posts', 'IndexController')->name('admin.post.index');
+        Route::get('/posts/create', 'CreateController')->name('admin.post.create');
+        Route::get('/posts/{post}', 'ShowController')->name('admin.post.show');
+        Route::get('/posts/{post}/edit', 'EditController')->name('admin.post.edit');
+        Route::patch('/posts/{post}', 'UpdateController')->name('admin.post.update');
+        Route::delete('/posts/{post}', 'DestroyController')->name('admin.post.destroy');
+        Route::post('/posts', 'StoreController')->name('admin.post.store');
+    });
+});
 
 Route::get('/about', 'App\Http\Controllers\AboutController@index')->name('about.index');
 Route::get('/main', 'App\Http\Controllers\MainController@index')->name('main.index');
@@ -35,3 +43,8 @@ Route::get('/contacts', 'App\Http\Controllers\ContactController@index')->name('c
 
 
 
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

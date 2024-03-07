@@ -16,6 +16,23 @@
             <input class="form-control" name="image" id="postImage" value="{{$post->image}}">
         </div>
         <div class="form-group">
+            <label for="postCategory">Post category</label>
+            <select class="form-select" aria-label="Select a category" id="postCategory" name="category_id">
+                @foreach($categories as $category)
+                    <option
+                        {{$category->id === $post->category_id ? 'selected' : ''}} value="{{$category->id}}">{{$category->title}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-select" multiple aria-label="Tags" name="tags[]">
+                <label for="postTags">Post tags</label>
+                @foreach($tags as $tag)
+                    <option {{$post->tags->contains($tag->id) ? 'selected' : ''}} value="{{$tag->id}}">{{$tag->title}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <br>
          <button type="submit" class="btn btn-primary mb-2">Update post</button>
         </div>

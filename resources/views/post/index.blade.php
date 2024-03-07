@@ -9,6 +9,8 @@
             {{$post->id}}. {{$post->title}}
             </a>
         </div>
-
     @endforeach
+    <div>
+        {{$posts->withQueryString()->links()}}
+    </div>
 @endsection

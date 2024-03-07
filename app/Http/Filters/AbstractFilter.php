@@ -4,7 +4,7 @@
 namespace App\Http\Filters;
 
 
-use App\Http\Filtres\FilterInterface;
+use App\Http\Filters\FilterInterface;
 use Illuminate\Database\Eloquent\Builder;
 
 abstract class AbstractFilter implements FilterInterface

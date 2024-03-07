@@ -9,7 +9,7 @@
             <a href="{{route('post.edit', $post->id)}}" class="nav-item nav-link">Edit</a>
         </div>
         <div>
-            <a class="nav-item nav-link">Back</a>
+            <a href="{{route('post.index')}}" class="nav-item nav-link">Back</a>
 
         </div>
         <div>

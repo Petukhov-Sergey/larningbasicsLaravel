@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Admin\Post;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
 
 class ShowController extends BaseController
 {
     public function __invoke(Post $post)
     {
-
-        return view('post.show', compact('post'));
+        return view('admin.post.show', compact('post'));
     }
 }
